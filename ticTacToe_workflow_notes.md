@@ -9,6 +9,12 @@ git css to size them..
 status 12:30 wed: 
 	got array 3x4 across the page. in the interest of time just going to get them working...
 ie... put the event handeler on the buttons
+
+status 13:30 did a git commint and push... 
+	click on button returns the id of the button.
+	time to write some javascript code...	
+
+status 	13
 	
 	
 	
