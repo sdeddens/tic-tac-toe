@@ -5,22 +5,12 @@ button {
 	border-width: 5px
 }
 
-#x00 { 
-	border-color: white black black white;
-}#x01 { 
-	border-color: white black black;
-}#x02 { 
-	border-color: white white black black;
-}#x10 { 
-	border-color: black black black white;
-}#x11 { 
-	border-color: black;
-}#x12 { 
-	border-color: black white black black;
-}#x20 { 
-	border-color: black black white white;
-}#x21 { 
-	border-color: black black white black;
-}#x22 { 
-	border-color: black white white black;
-}
+#x0 {border-color: white black black white;}
+#x1 {border-color: white black black;}
+#x2 {border-color: white white black black;}
+#x3 {border-color: black black black white;}
+#x4 {border-color: black;}
+#x5 {border-color: black white black black;}
+#x6 {border-color: black black white white;}
+#x7 {border-color: black black white black;}
+#x8 {border-color: black white white black;}

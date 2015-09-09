@@ -14,7 +14,8 @@ status 13:30 did a git commint and push...
 	click on button returns the id of the button.
 	time to write some javascript code...	
 
-status 	13
+status 	14:30 basic functionality working... need to recognize a winner,
 	
+status: 16:00  winner logic working... 
 	
 	
