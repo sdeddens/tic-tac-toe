@@ -17,18 +17,12 @@ $(function(){
 
 
 	var resetBoard = function () {
-		for (var buttonId in fldBtnState ) {
-			fldBtnState [buttonId] = "";
-			button = $("#"+buttonId);
-			button.html("click me");
-		};
+		for (var buttonId in fldBtnState) {
+			fldBtnState[buttonId] = "";
+			$("#"+buttonId).html("click me")};
 		plays = 0;
 		xPlayerState = true;
 	};
-
-	// create a working copy of the fieldState:
-	var fldBtnState = new FieldBtnDefault();
-	alert (fldBtnState.x0);
 
 
 	$("button.field").on("click", function () {
