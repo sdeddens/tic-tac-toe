@@ -6,20 +6,24 @@ $(function(){
 // then drive the whole program from the onclick event!
 	
 	var xPlayerState = true;
+	var plays = 0;
 	
-	// create a default "reset" object to store the field state so we can check for a winner;
+	// create an object to store the field state so we can check for a winner;
+	var fldBtnState = {
+		x0: "", x1: "", x2: "",
+		x3: "", x4: "", x5: "",
+		x6: "", x7: "", x8: "",
+	};
 
-	var FieldBtnDefault;
-	function FieldBtnDefault () {
-		this.x0 = "click me";
-		this.x1 = "click me";
-		this.x2 = "click me";
-		this.x3 = "click me";
-		this.x4 = "click me";
-		this.x5 = "click me";
-		this.x6 = "click me";
-		this.x7 = "click me";
-		this.x8 = "click me";
+
+	var resetBoard = function () {
+		for (var buttonId in fldBtnState ) {
+			fldBtnState [buttonId] = "";
+			button = $("#"+buttonId);
+			button.html("click me");
+		};
+		plays = 0;
+		xPlayerState = true;
 	};
 
 	// create a working copy of the fieldState:
@@ -40,12 +44,12 @@ $(function(){
 		if (xPlayerState) {
 			button.html("X");
 			fldBtnState[buttonId]="X";
-			xPlayerState = false;
-		} else {
+			xPlayerState = false;}
+		else {
 			button.html("O");
 			fldBtnState[buttonId]="O";
-			xPlayerState = true;
-		};
+			xPlayerState = true;};
+		plays ++;
 		// check for winner... brute force, no feniss!
 		if ( 
 			((fldBtnState.x0 === 'X') && (fldBtnState.x1 === 'X') && (fldBtnState.x2 === 'X')) ||
@@ -55,13 +59,11 @@ $(function(){
 			((fldBtnState.x1 === 'X') && (fldBtnState.x4 === 'X') && (fldBtnState.x7 === 'X')) ||
 			((fldBtnState.x2 === 'X') && (fldBtnState.x5 === 'X') && (fldBtnState.x8 === 'X')) ||
 			((fldBtnState.x0 === 'X') && (fldBtnState.x4 === 'X') && (fldBtnState.x8 === 'X')) ||
-			((fldBtnState.x2 === 'X') && (fldBtnState.x4 === 'X') && (fldBtnState.x6 === 'X'))
-			){
-				alert ("X WINS!");
-				return;
-		} else {
-
-		if (
+			((fldBtnState.x2 === 'X') && (fldBtnState.x4 === 'X') && (fldBtnState.x6 === 'X')) ){
+				
+			alert ("X WINS!");
+			resetBoard();
+		} else if (
 			((fldBtnState.x0 === 'O') && (fldBtnState.x1 === 'O') && (fldBtnState.x2 === 'O')) ||
 			((fldBtnState.x3 === 'O') && (fldBtnState.x4 === 'O') && (fldBtnState.x5 === 'O')) ||
 			((fldBtnState.x6 === 'O') && (fldBtnState.x7 === 'O') && (fldBtnState.x8 === 'O')) ||
@@ -69,16 +71,13 @@ $(function(){
 			((fldBtnState.x1 === 'O') && (fldBtnState.x4 === 'O') && (fldBtnState.x7 === 'O')) ||
 			((fldBtnState.x2 === 'O') && (fldBtnState.x5 === 'O') && (fldBtnState.x8 === 'O')) ||
 			((fldBtnState.x0 === 'O') && (fldBtnState.x4 === 'O') && (fldBtnState.x8 === 'O')) ||
-			((fldBtnState.x2 === 'O') && (fldBtnState.x4 === 'O') && (fldBtnState.x6 === 'O')) 
-			){
-				alert ("O WINS!");
-				return;
-			};
+			((fldBtnState.x2 === 'O') && (fldBtnState.x4 === 'O') && (fldBtnState.x6 === 'O')) ){
+
+			alert ("O WINS!");
+			resetBoard();
+		} else if (plays === 9) {
+			alert ("CAT'S GAME!");
+			resetBoard()
 		};
 	});
-	// reset all everything.
-	// $("button.field").html("click me");
-	// fldBtnState = new FieldBtnDefault();
-	xPlayerState = true;
-	alert ("How did we get here?");
 });
