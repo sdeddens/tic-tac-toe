@@ -7,12 +7,25 @@ $(function(){
 	
 	var xPlayerState = true;
 	
-	// create an object to store the field state so we can check for a winner;
-	var fldBtnState = {
-		x0: "click me", x1: "click me", x2: "click me",
-		x3: "click me", x4: "click me", x5: "click me",
-		x6: "click me", x7: "click me", x8: "click me",
+	// create a default "reset" object to store the field state so we can check for a winner;
+
+	var FieldBtnDefault;
+	function FieldBtnDefault () {
+		this.x0 = "click me";
+		this.x1 = "click me";
+		this.x2 = "click me";
+		this.x3 = "click me";
+		this.x4 = "click me";
+		this.x5 = "click me";
+		this.x6 = "click me";
+		this.x7 = "click me";
+		this.x8 = "click me";
 	};
+
+	// create a working copy of the fieldState:
+	var fldBtnState = new FieldBtnDefault();
+	alert (fldBtnState.x0);
+
 
 	$("button.field").on("click", function () {
 
@@ -45,6 +58,7 @@ $(function(){
 			((fldBtnState.x2 === 'X') && (fldBtnState.x4 === 'X') && (fldBtnState.x6 === 'X'))
 			){
 				alert ("X WINS!");
+				return;
 		} else {
 
 		if (
@@ -58,8 +72,13 @@ $(function(){
 			((fldBtnState.x2 === 'O') && (fldBtnState.x4 === 'O') && (fldBtnState.x6 === 'O')) 
 			){
 				alert ("O WINS!");
+				return;
 			};
 		};
 	});
-
+	// reset all everything.
+	// $("button.field").html("click me");
+	// fldBtnState = new FieldBtnDefault();
+	xPlayerState = true;
+	alert ("How did we get here?");
 });
