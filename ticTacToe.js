@@ -7,6 +7,7 @@ $(function(){
 	
 	var xPlayerState = true;
 	var plays = 0;
+	$("#X").css("background-color","blue");
 	
 	// create an object to store the field state so we can check for a winner;
 	var fldBtnState = {
@@ -22,7 +23,14 @@ $(function(){
 			$("#"+buttonId).html("click me")};
 		plays = 0;
 		xPlayerState = true;
+		$("#X").css("background-color","blue");
+		$("#O").css("background-color","");
 	};
+
+	
+	$("#reset").on("click", function () {
+		resetBoard();
+	});
 
 
 	$("button.field").on("click", function () {
@@ -30,7 +38,7 @@ $(function(){
 		var buttonId = $(this).attr('id');
 		var button = $("#"+buttonId);
 
-		if ((button.html() === "X") || (button.html() === "O")) {
+		if ((fldBtnState[buttonId] === "X") || (fldBtnState[buttonId] === "O")) {
 
 			return;};	// square already played!
 
@@ -38,13 +46,18 @@ $(function(){
 
 			button.html("X");
 			fldBtnState[buttonId]="X";
-			xPlayerState = false;}
+			xPlayerState = false;
+			$("#O").css("background-color","blue");
+			$("#X").css("background-color","");
 
-		else {
+			} else {
 
 			button.html("O");
 			fldBtnState[buttonId]="O";
-			xPlayerState = true;};
+			xPlayerState = true;
+			$("#X").css("background-color","blue");
+			$("#O").css("background-color","");
+			};
 
 		plays ++;
 
@@ -62,7 +75,7 @@ $(function(){
 			alert ("X WINS!");
 			resetBoard();
 
-		} else if (
+			} else if (
 			((fldBtnState.x0 === 'O') && (fldBtnState.x1 === 'O') && (fldBtnState.x2 === 'O')) ||
 			((fldBtnState.x3 === 'O') && (fldBtnState.x4 === 'O') && (fldBtnState.x5 === 'O')) ||
 			((fldBtnState.x6 === 'O') && (fldBtnState.x7 === 'O') && (fldBtnState.x8 === 'O')) ||
@@ -75,7 +88,7 @@ $(function(){
 			alert ("O WINS!");
 			resetBoard();
 
-		} else if (plays === 9) {
+			} else if (plays === 9) {
 
 			alert ("CAT'S GAME!");
 			resetBoard();
