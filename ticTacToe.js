@@ -28,9 +28,7 @@ $(function(){
 	};
 
 	
-	$("#reset").on("click", function () {
-		resetBoard();
-	});
+	$("#reset").on( "click", function () {resetBoard()} );
 
 
 	$("button.field").on("click", function () {
