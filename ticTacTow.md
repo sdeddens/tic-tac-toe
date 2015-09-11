@@ -1,4 +1,4 @@
-TIC-TAC-TOW General Assembly Week-3 student project
+TIC-TAC-TOE General Assembly Week-3 student project
 Overview: Interactive user game designed to be played in a web browser. 
 
 Student: Stephen Deddens
@@ -34,9 +34,16 @@ Explanations of the technologies used:
 	https://developer.mozilla.org/en-US/docs/Web/JavaScript
 	https://www.javascript.com/resources
 
-	jQuary:
+	jQuery:
 	https://en.wikipedia.org/wiki/JQuery
 	https://jquery.com/
+
+	Gliffy: Wireframing tool
+	https://www.gliffy.com/ 
+
+	Agile Project Tracking Software:
+	https://en.wikipedia.org/wiki/Agile_software_development
+	https://www.pivotaltracker.com/
 
 	Git: Distributed version control system
 	https://en.wikipedia.org/wiki/Git_%28software%29
@@ -46,7 +53,8 @@ Explanations of the technologies used:
 	https://en.wikipedia.org/wiki/GitHub
 	https://github.com/
 
-	server side ftp.. 
+	FileZilla: FTP client for pushing project files to web server
+	https://filezilla-project.org/
 
 Approach taken to implement the project goals:
 
@@ -58,7 +66,7 @@ Approach taken to implement the project goals:
 
 	Third step: Create minimal display using HTML and CSS. Attach to the HTML elements unique id selectors making them accessible to the JavaScript.
 
-	Fourth step: "Sudocode" the JavaScript. 
+	Fourth step: "Pseudocode" the JavaScript. 
 
 		Create tracking variables
 			whosTurn boolean;
@@ -72,7 +80,7 @@ Approach taken to implement the project goals:
 				and while in the loop reset the on screen HTML to original state.
 
 
-		Use jQuary to manage mouse click events
+		Use jQuery to manage mouse click events
 
 			Two possible events
 
@@ -83,7 +91,7 @@ Approach taken to implement the project goals:
 							return out of the event and wait for new click event
 						else 
 							update tracking object and the HTML with X or O (depending on player state)
-							update totalPlaysConter and whosTurn variables
+							update totalPlaysCounter and whosTurn variables
 
 						scan the tracking object for the 18 possible winning solutions.
 						if winner... announce it and call the reset function.
@@ -93,8 +101,20 @@ Approach taken to implement the project goals:
 				Second possible event: Click on a "reset" button;
 					call the reset function.
 
-	Fifth Step: Write the javaScrip code and test;
+	Fifth Step: Write the javaScrip code, testing iteratively;
+
+	Sixth Step: Write this README.md and push up to Git Hub.
+
+	Seventh Step: Push up to host server.
+
+Installation Instructions: Point browser at ---
+
+		"http://powerbids.com/Steve/Projects/Tic-Tac-Toe/""
 
 
+Unsolved problems:  None.  MVP achieved.
 
-, installation instructions, unsolved problems
+Continuing development opportunities:
+
+	Add interactive user names allowing score keeping.
+	Use CSS to style background and button design... etc.
