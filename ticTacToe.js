@@ -1,19 +1,18 @@
-
 // first wait for the load!
 $(function(){
 
 // slap a universal jQuery event handeler on the buttons
 // then drive the whole program from the onclick event!
-	
+
 	var xPlayerState = true;
 	var plays = 0;
 	$("#X").css("background-color","blue");
-	
+
 	// create an object to store the field state so we can check for a winner;
 	var fldBtnState = {
-		x0: "", x1: "", x2: "",
-		x3: "", x4: "", x5: "",
-		x6: "", x7: "", x8: "",
+		a1: "", a2: "", a3: "",
+		b1: "", b2: "", b3: "",
+		c1: "", c2: "", c3: "",
 	};
 
 
@@ -27,7 +26,7 @@ $(function(){
 		$("#O").css("background-color","");
 	};
 
-	
+
 	$("#reset").on( "click", function () {resetBoard()} );
 
 
@@ -59,29 +58,39 @@ $(function(){
 
 		plays ++;
 
-		// check for winner... brute force, no finess!
-		if ( 
-			((fldBtnState.x0 === 'X') && (fldBtnState.x1 === 'X') && (fldBtnState.x2 === 'X')) ||
-			((fldBtnState.x3 === 'X') && (fldBtnState.x4 === 'X') && (fldBtnState.x5 === 'X')) ||
-			((fldBtnState.x6 === 'X') && (fldBtnState.x7 === 'X') && (fldBtnState.x8 === 'X')) ||
-			((fldBtnState.x0 === 'X') && (fldBtnState.x3 === 'X') && (fldBtnState.x6 === 'X')) ||
-			((fldBtnState.x1 === 'X') && (fldBtnState.x4 === 'X') && (fldBtnState.x7 === 'X')) ||
-			((fldBtnState.x2 === 'X') && (fldBtnState.x5 === 'X') && (fldBtnState.x8 === 'X')) ||
-			((fldBtnState.x0 === 'X') && (fldBtnState.x4 === 'X') && (fldBtnState.x8 === 'X')) ||
-			((fldBtnState.x2 === 'X') && (fldBtnState.x4 === 'X') && (fldBtnState.x6 === 'X')) ){
-				
+		// check for winner... brute force, no finess... but, only one line of code for each player.
+		if (
+			// check each row;
+			((fldBtnState.a1 === 'X') && (fldBtnState.a2 === 'X') && (fldBtnState.a3 === 'X')) ||
+			((fldBtnState.b1 === 'X') && (fldBtnState.b2 === 'X') && (fldBtnState.b3 === 'X')) ||
+			((fldBtnState.c1 === 'X') && (fldBtnState.c2 === 'X') && (fldBtnState.c3 === 'X')) ||
+
+			// check each collumn;
+			((fldBtnState.a1 === 'X') && (fldBtnState.b1 === 'X') && (fldBtnState.c1 === 'X')) ||
+			((fldBtnState.a2 === 'X') && (fldBtnState.b2 === 'X') && (fldBtnState.c2 === 'X')) ||
+			((fldBtnState.a3 === 'X') && (fldBtnState.b3 === 'X') && (fldBtnState.c3 === 'X')) ||
+
+			// check each diagonal;
+			((fldBtnState.a1 === 'X') && (fldBtnState.b2 === 'X') && (fldBtnState.c3 === 'X')) ||
+			((fldBtnState.c1 === 'X') && (fldBtnState.b2 === 'X') && (fldBtnState.a3 === 'X')) ){
+
 			alert ("X WINS!");
 			resetBoard();
 
 			} else if (
-			((fldBtnState.x0 === 'O') && (fldBtnState.x1 === 'O') && (fldBtnState.x2 === 'O')) ||
-			((fldBtnState.x3 === 'O') && (fldBtnState.x4 === 'O') && (fldBtnState.x5 === 'O')) ||
-			((fldBtnState.x6 === 'O') && (fldBtnState.x7 === 'O') && (fldBtnState.x8 === 'O')) ||
-			((fldBtnState.x0 === 'O') && (fldBtnState.x3 === 'O') && (fldBtnState.x6 === 'O')) ||
-			((fldBtnState.x1 === 'O') && (fldBtnState.x4 === 'O') && (fldBtnState.x7 === 'O')) ||
-			((fldBtnState.x2 === 'O') && (fldBtnState.x5 === 'O') && (fldBtnState.x8 === 'O')) ||
-			((fldBtnState.x0 === 'O') && (fldBtnState.x4 === 'O') && (fldBtnState.x8 === 'O')) ||
-			((fldBtnState.x2 === 'O') && (fldBtnState.x4 === 'O') && (fldBtnState.x6 === 'O')) ){
+			// check each row;
+			((fldBtnState.a1 === 'O') && (fldBtnState.a2 === 'O') && (fldBtnState.a3 === 'O')) ||
+			((fldBtnState.b1 === 'O') && (fldBtnState.b2 === 'O') && (fldBtnState.b3 === 'O')) ||
+			((fldBtnState.c1 === 'O') && (fldBtnState.c2 === 'O') && (fldBtnState.c3 === 'O')) ||
+
+			// check each collumn;
+			((fldBtnState.a1 === 'O') && (fldBtnState.b1 === 'O') && (fldBtnState.c1 === 'O')) ||
+			((fldBtnState.a2 === 'O') && (fldBtnState.b2 === 'O') && (fldBtnState.c2 === 'O')) ||
+			((fldBtnState.a3 === 'O') && (fldBtnState.b3 === 'O') && (fldBtnState.c3 === 'O')) ||
+
+			// check each diagonal;
+			((fldBtnState.a1 === 'O') && (fldBtnState.b2 === 'O') && (fldBtnState.c3 === 'O')) ||
+			((fldBtnState.c1 === 'O') && (fldBtnState.b2 === 'O') && (fldBtnState.a3 === 'O')) ){
 
 			alert ("O WINS!");
 			resetBoard();

@@ -5,12 +5,14 @@ button {
 	border-width: 5px
 }
 
-#x0 {border-color: white black black white;}
-#x1 {border-color: white black black;}
-#x2 {border-color: white white black black;}
-#x3 {border-color: black black black white;}
-#x4 {border-color: black;}
-#x5 {border-color: black white black black;}
-#x6 {border-color: black black white white;}
-#x7 {border-color: black black white black;}
-#x8 {border-color: black white white black;}
+#a1 {border-color: white black black white;}
+#a2 {border-color: white black black;}
+#a3 {border-color: white white black black;}
+
+#b1 {border-color: black black black white;}
+#b2 {border-color: black;}
+#b3 {border-color: black white black black;}
+
+#c1 {border-color: black black white white;}
+#c2 {border-color: black black white black;}
+#c3 {border-color: black white white black;}
