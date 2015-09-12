@@ -6,7 +6,8 @@ $(function(){
 
 	var xPlayerState = true;
 	var plays = 0;
-	$("#X").css("background-color","blue");
+	$("#X").css("background-color","blue");      // vs  cornflowerblue
+	$("#O").css("background-color",""); // vs firebrick
 
 	// create an object to store the field state so we can check for a winner;
 	var fldBtnState = {
@@ -19,7 +20,9 @@ $(function(){
 	var resetBoard = function () {
 		for (var buttonId in fldBtnState) {
 			fldBtnState[buttonId] = "";
-			$("#"+buttonId).html("click me")};
+			$("#"+buttonId).html("click me")
+			$("#"+buttonId).css("background-color","");
+		};
 		plays = 0;
 		xPlayerState = true;
 		$("#X").css("background-color","blue");
@@ -41,16 +44,18 @@ $(function(){
 
 		if (xPlayerState) {
 
-			button.html("X");
 			fldBtnState[buttonId]="X";
+			button.html("X");
+			button.css("background-color","blue");
 			xPlayerState = false;
-			$("#O").css("background-color","blue");
 			$("#X").css("background-color","");
+			$("#O").css("background-color","firebrick");
 
 			} else {
 
-			button.html("O");
 			fldBtnState[buttonId]="O";
+			button.html("O");
+			button.css("background-color","firebrick");
 			xPlayerState = true;
 			$("#X").css("background-color","blue");
 			$("#O").css("background-color","");

@@ -2,7 +2,7 @@ button {
 	height: 100px;
 	width: 100px;
 	margin: 5px;
-	border-width: 5px
+	border-width: 5px;
 }
 
 #a1 {border-color: white black black white;}
