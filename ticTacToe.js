@@ -8,9 +8,10 @@ $(function(){
 	var winner = false;
 	var catsLives = 0;
 	var buttons = null;
-	var flashingTimer = null; // Use: to make sure we get a clean reset!
-	var flashTimer1 = null;   // Use: to make sure we get a clean reset!
-	var flashTimer2 = null;   // Use: to make sure we get a clean reset!
+	var upFlashingTimer = null; // Use: to make sure we get a clean reset!
+	var downFlashingTimer = null; // Use: to make sure we get a clean reset!
+	var upTimer = null;   // Use: to make sure we get a clean reset!
+	var downFlasher = null;   // Use: to make sure we get a clean reset!
 	$("#X").css("background-color","blue");
 	$("#O").css("background-color",""); // vs firebrick
 
@@ -24,9 +25,10 @@ $(function(){
 
 	var resetBoard = function () {
 		//Make sure a timer doesn't fire after we reset!
-		clearInterval(flashingTimer);
-		clearTimeout(flashTimer1);
-		clearTimeout(flashTimer2);
+		clearTimeout(delayTimer); //kill first to preempt spawning another upFlasher.
+		clearTimeout(upTimer);
+		clearInterval(upFlashingTimer);
+		clearInterval(downFlashingTimer);
 		// Reset the fldBtnState object.
 		for (var buttonId in fldBtnState) {
 			fldBtnState[buttonId] = "";
@@ -47,16 +49,22 @@ $(function(){
 		winner = true; //strangle click handler;
 		$("#X, #O").css("background-color","");
 		buttons = $(winningRow);
-		buttons.css("opacity",1);
-		flashTimer1 = setTimeout(function(){buttons.css("opacity",0.6)},600);
-		flashingTimer = setInterval(function(){
-			buttons.css("opacity",1);
-			flashTimer2 = setTimeout(function(){
-				buttons.css("opacity",0.6)
-			}, 600);
-		}, 1200);
-	};
 
+		 // start the first flash down cycle asap.
+		buttons.css("opacity",0.6);
+		// start up cycle in 600ms
+		upTimer = setTimeout(function(){buttons.css("opacity",1.0)},600);
+		// downFlashingTimer starts in 1200 ms from asap and repeats every 1200ms.
+		downFlashingTimer = setInterval(function(){
+				buttons.css("opacity",0.6);
+		}, 1200);
+		// delay upFlasher by 600ms putting it 180 deg out of phase with downFlasher
+		delayTimer = setTimeout(function(){
+			upFlashingTimer = setInterval(function(){
+				buttons.css("opacity",1.0);
+			}, 1200);
+		},600);
+	};
 	// First of the two event handlers.
 	$("#reset").on( "click", function () {resetBoard()} );
 
