@@ -5,7 +5,10 @@ $(function(){
 // then drive the whole program from the onclick event!
 
 	var xPlayerState = true;
+	var winner = false;
 	var plays = 0;
+	var buttons = null;
+	var flashTimerID = null;
 	$("#X").css("background-color","blue");      // vs  cornflowerblue
 	$("#O").css("background-color",""); // vs firebrick
 
@@ -23,8 +26,11 @@ $(function(){
 			$("#"+buttonId).html("click me")
 			$("#"+buttonId).css("background-color","");
 		};
+		clearTimeout(flashTimerID);
 		plays = 0;
 		xPlayerState = true;
+		winner = false;
+		buttons = null;
 		$("#X").css("background-color","blue");
 		$("#O").css("background-color","");
 	};
@@ -34,6 +40,8 @@ $(function(){
 
 
 	$("button.field").on("click", function () {
+
+		if(winner) return;
 
 		var buttonId = $(this).attr('id');
 		var button = $("#"+buttonId);
@@ -64,9 +72,22 @@ $(function(){
 		plays ++;
 
 		// check for winner... brute force, no finess... but, only one line of code for each player.
-		if (
 			// check each row;
-			((fldBtnState.a1 === 'X') && (fldBtnState.a2 === 'X') && (fldBtnState.a3 === 'X')) ||
+		if( (fldBtnState.a1 === 'X') && (fldBtnState.a2 === 'X') && (fldBtnState.a3 === 'X') ){
+				winner = true; //strangle click handler;
+				buttons = $(".r1");
+				buttons.css("background-color","");
+				setTimeout(function(){buttons.css("background-color","blue")},400);
+				flashTimerID = setInterval(function(){
+					buttons.css("background-color","");
+					setTimeout(function(){
+						buttons.css("background-color","blue")
+						}, 400);
+					}, 800);
+			// $(".r1").css("background-color","blue");
+				// resetBoard();
+
+		}else if (
 			((fldBtnState.b1 === 'X') && (fldBtnState.b2 === 'X') && (fldBtnState.b3 === 'X')) ||
 			((fldBtnState.c1 === 'X') && (fldBtnState.c2 === 'X') && (fldBtnState.c3 === 'X')) ||
 

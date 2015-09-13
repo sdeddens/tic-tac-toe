@@ -3,6 +3,7 @@ button {
 	width: 100px;
 	margin: 5px;
 	border-width: 5px;
+  transition:all .8s ease;
 }
 
 #a1 {border-color: white black black white;}
