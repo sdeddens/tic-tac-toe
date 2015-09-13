@@ -13,6 +13,7 @@ $(function(){
 	var upTimer = null;   // Use: to make sure we get a clean reset!
 	var delayTimer = null;   // Use: to make sure we get a clean reset!
 	var meow = $("audio")[0];
+	var applause = $("audio")[1];
 	$("#X").css("background-color","blue");
 	$("#O").css("background-color",""); // vs firebrick
 
@@ -44,18 +45,27 @@ $(function(){
 		$("#X").css("background-color","blue");
 		$("#O").css("background-color","");
 		$("button").css("opacity",1);
+		//strangle the cat and the people.
+		// $("audio").prop("volume",0);
+		meow.pause();
+		meow.currentTime = 0;
+		applause.pause();
+		applause.currentTime = 0;
 	};
 
 	var processWinner = function (winningRow){
 		winner = true; //strangle click handler;
+		 // un-strangle the cat and the people then play audio.
+		// $("audio").prop("volume",1);
+		if (catsLives === 9){meow.play()}else{applause.play()};
+		//get a handle on the winning buttons.
 		$("#X, #O").css("background-color","");
 		buttons = $(winningRow);
-
 		 // start the first flash down cycle asap.
 		buttons.css("opacity",0.6);
 		// start up cycle in 600ms
 		upTimer = setTimeout(function(){buttons.css("opacity",1.0)},600);
-		// downFlashingTimer starts in 1200 ms from asap and repeats every 1200ms.
+		// downFlashingTimer starts in 1200 ms from asap and repeats every 1200 ms.
 		downFlashingTimer = setInterval(function(){
 				buttons.css("opacity",0.6);
 		}, 1200);
@@ -159,7 +169,7 @@ $(function(){
 			processWinner (".d2"); return;
 		};
 		if (catsLives === 9) {
-			meow.play(); processWinner(".field"); return;
+			processWinner(".field"); return;
 		};
 	});
 });
