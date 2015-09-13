@@ -35,22 +35,38 @@ $(function(){
 		$("#O").css("background-color","");
 	};
 
+	var processWinner = function (winningRow,color,cat){
+		winner = true; //strangle click handler;
+		buttons = $(winningRow);
+		buttons.css("background-color","");
+		if (cat = undefined){
+			xButtons = $()
+		}
+		setTimeout(function(){buttons.css("background-color",color)},400);
+
+		flashTimerID = setInterval(function(){
+			buttons.css("background-color","");
+			setTimeout(function(){
+				buttons.css("background-color",color)
+			}, 400);
+		}, 800);
+	};
 
 	$("#reset").on( "click", function () {resetBoard()} );
 
 
 	$("button.field").on("click", function () {
 
-		if(winner) return;
+		if(winner) return; //kill click event until reset.
 
 		var buttonId = $(this).attr('id');
 		var button = $("#"+buttonId);
 
 		if ((fldBtnState[buttonId] === "X") || (fldBtnState[buttonId] === "O")) {
 
-			return;};	// square already played!
+			return;};	// square already played! Wait for another click.
 
-		if (xPlayerState) {
+		if (xPlayerState) { // X's turn.
 
 			fldBtnState[buttonId]="X";
 			button.html("X");
@@ -59,7 +75,7 @@ $(function(){
 			$("#X").css("background-color","");
 			$("#O").css("background-color","firebrick");
 
-			} else {
+			} else {					// O's turn.
 
 			fldBtnState[buttonId]="O";
 			button.html("O");
@@ -69,62 +85,66 @@ $(function(){
 			$("#O").css("background-color","");
 			};
 
-		plays ++;
+		plays ++;           // cat's counter.
 
-		// check for winner... brute force, no finess... but, only one line of code for each player.
-			// check each row;
-		if( (fldBtnState.a1 === 'X') && (fldBtnState.a2 === 'X') && (fldBtnState.a3 === 'X') ){
-				winner = true; //strangle click handler;
-				buttons = $(".r1");
-				buttons.css("background-color","");
-				setTimeout(function(){buttons.css("background-color","blue")},400);
-				flashTimerID = setInterval(function(){
-					buttons.css("background-color","");
-					setTimeout(function(){
-						buttons.css("background-color","blue")
-						}, 400);
-					}, 800);
-			// $(".r1").css("background-color","blue");
-				// resetBoard();
-
-		}else if (
-			((fldBtnState.b1 === 'X') && (fldBtnState.b2 === 'X') && (fldBtnState.b3 === 'X')) ||
-			((fldBtnState.c1 === 'X') && (fldBtnState.c2 === 'X') && (fldBtnState.c3 === 'X')) ||
-
-			// check each collumn;
-			((fldBtnState.a1 === 'X') && (fldBtnState.b1 === 'X') && (fldBtnState.c1 === 'X')) ||
-			((fldBtnState.a2 === 'X') && (fldBtnState.b2 === 'X') && (fldBtnState.c2 === 'X')) ||
-			((fldBtnState.a3 === 'X') && (fldBtnState.b3 === 'X') && (fldBtnState.c3 === 'X')) ||
-
+		// check for winner... brute force, no finesse...
+		// check each row;
+		if((fldBtnState.a1 === 'X') && (fldBtnState.a2 === 'X') && (fldBtnState.a3 === 'X')){
+			processWinner (".r1","blue"); return;
+		};
+		if((fldBtnState.b1 === 'X') && (fldBtnState.b2 === 'X') && (fldBtnState.b3 === 'X')){
+			processWinner (".r2","blue"); return;
+		};
+		if((fldBtnState.c1 === 'X') && (fldBtnState.c2 === 'X') && (fldBtnState.c3 === 'X')){
+			processWinner (".r3","blue"); return;
+		};
+		// check each column;
+		if((fldBtnState.a1 === 'X') && (fldBtnState.b1 === 'X') && (fldBtnState.c1 === 'X')){
+			processWinner (".c1","blue"); return;
+		};
+		if((fldBtnState.a2 === 'X') && (fldBtnState.b2 === 'X') && (fldBtnState.c2 === 'X')){
+			processWinner (".c2","blue"); return;
+		};
+		if((fldBtnState.a3 === 'X') && (fldBtnState.b3 === 'X') && (fldBtnState.c3 === 'X')){
+			processWinner (".c3","blue"); return;
 			// check each diagonal;
-			((fldBtnState.a1 === 'X') && (fldBtnState.b2 === 'X') && (fldBtnState.c3 === 'X')) ||
-			((fldBtnState.c1 === 'X') && (fldBtnState.b2 === 'X') && (fldBtnState.a3 === 'X')) ){
+		};
+		if((fldBtnState.a1 === 'X') && (fldBtnState.b2 === 'X') && (fldBtnState.c3 === 'X')){
+			processWinner (".d1","blue"); return;
+		};
+		if((fldBtnState.c1 === 'X') && (fldBtnState.b2 === 'X') && (fldBtnState.a3 === 'X')){
+			processWinner (".d2","blue"); return;
+		};
 
-			alert ("X WINS!");
-			resetBoard();
-
-			} else if (
-			// check each row;
-			((fldBtnState.a1 === 'O') && (fldBtnState.a2 === 'O') && (fldBtnState.a3 === 'O')) ||
-			((fldBtnState.b1 === 'O') && (fldBtnState.b2 === 'O') && (fldBtnState.b3 === 'O')) ||
-			((fldBtnState.c1 === 'O') && (fldBtnState.c2 === 'O') && (fldBtnState.c3 === 'O')) ||
-
-			// check each collumn;
-			((fldBtnState.a1 === 'O') && (fldBtnState.b1 === 'O') && (fldBtnState.c1 === 'O')) ||
-			((fldBtnState.a2 === 'O') && (fldBtnState.b2 === 'O') && (fldBtnState.c2 === 'O')) ||
-			((fldBtnState.a3 === 'O') && (fldBtnState.b3 === 'O') && (fldBtnState.c3 === 'O')) ||
-
-			// check each diagonal;
-			((fldBtnState.a1 === 'O') && (fldBtnState.b2 === 'O') && (fldBtnState.c3 === 'O')) ||
-			((fldBtnState.c1 === 'O') && (fldBtnState.b2 === 'O') && (fldBtnState.a3 === 'O')) ){
-
-			alert ("O WINS!");
-			resetBoard();
-
-			} else if (plays === 9) {
-
-			alert ("CAT'S GAME!");
-			resetBoard();
+		// check each row;
+		if((fldBtnState.a1 === 'O') && (fldBtnState.a2 === 'O') && (fldBtnState.a3 === 'O')){
+			processWinner (".r1","firebrick"); return;
+		};
+		if((fldBtnState.b1 === 'O') && (fldBtnState.b2 === 'O') && (fldBtnState.b3 === 'O')){
+			processWinner (".r2","firebrick"); return;
+		};
+		if((fldBtnState.c1 === 'O') && (fldBtnState.c2 === 'O') && (fldBtnState.c3 === 'O')){
+			processWinner (".r3","firebrick"); return;
+		};
+		// check each column;
+		if((fldBtnState.a1 === 'O') && (fldBtnState.b1 === 'O') && (fldBtnState.c1 === 'O')){
+			processWinner (".c1","firebrick"); return;
+		};
+		if((fldBtnState.a2 === 'O') && (fldBtnState.b2 === 'O') && (fldBtnState.c2 === 'O')){
+			processWinner (".c2","firebrick"); return;
+			};
+		if((fldBtnState.a3 === 'O') && (fldBtnState.b3 === 'O') && (fldBtnState.c3 === 'O')){
+			processWinner (".c3","firebrick"); return;
+		};
+		// check each diagonal;
+		if((fldBtnState.a1 === 'O') && (fldBtnState.b2 === 'O') && (fldBtnState.c3 === 'O')){
+			processWinner (".d1","firebrick"); return;
+		};
+		if((fldBtnState.c1 === 'O') && (fldBtnState.b2 === 'O') && (fldBtnState.a3 === 'O')){
+			processWinner (".d2","firebrick"); return;
+		};
+		if (plays === 9) {
+			processWinner (".field","firebrick","blue"); return;
 		};
 	});
 });
