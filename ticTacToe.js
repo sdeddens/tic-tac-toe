@@ -48,13 +48,13 @@ $(function(){
 		$("#X, #O").css("background-color","");
 		buttons = $(winningRow);
 		buttons.css("opacity",1);
-		flashTimer1 = setTimeout(function(){buttons.css("opacity",0.6)},400);
+		flashTimer1 = setTimeout(function(){buttons.css("opacity",0.6)},600);
 		flashingTimer = setInterval(function(){
 			buttons.css("opacity",1);
 			flashTimer2 = setTimeout(function(){
 				buttons.css("opacity",0.6)
-			}, 400);
-		}, 800);
+			}, 600);
+		}, 1200);
 	};
 
 	// First of the two event handlers.
