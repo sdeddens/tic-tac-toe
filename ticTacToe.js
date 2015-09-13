@@ -11,7 +11,8 @@ $(function(){
 	var upFlashingTimer = null; // Use: to make sure we get a clean reset!
 	var downFlashingTimer = null; // Use: to make sure we get a clean reset!
 	var upTimer = null;   // Use: to make sure we get a clean reset!
-	var downFlasher = null;   // Use: to make sure we get a clean reset!
+	var delayTimer = null;   // Use: to make sure we get a clean reset!
+	var meow = $("audio")[0];
 	$("#X").css("background-color","blue");
 	$("#O").css("background-color",""); // vs firebrick
 
@@ -158,7 +159,7 @@ $(function(){
 			processWinner (".d2"); return;
 		};
 		if (catsLives === 9) {
-			processWinner (".field"); return;
+			meow.play(); processWinner(".field"); return;
 		};
 	});
 });
