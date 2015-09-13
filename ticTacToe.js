@@ -1,60 +1,66 @@
 // first wait for the load!
 $(function(){
 
-// slap a universal jQuery event handeler on the buttons
-// then drive the whole program from the onclick event!
+// Slap a universal jQuery event handler on the buttons
+// Then drive the whole program from the two on click events!
 
 	var xPlayerState = true;
 	var winner = false;
-	var plays = 0;
+	var catsLives = 0;
 	var buttons = null;
-	var flashTimerID = null;
-	$("#X").css("background-color","blue");      // vs  cornflowerblue
+	var flashingTimer = null; // Use: to make sure we get a clean reset!
+	var flashTimer1 = null;   // Use: to make sure we get a clean reset!
+	var flashTimer2 = null;   // Use: to make sure we get a clean reset!
+	$("#X").css("background-color","blue");
 	$("#O").css("background-color",""); // vs firebrick
 
 	// create an object to store the field state so we can check for a winner;
+	// note: there is a one-to-one correspondence to each filed button id.
 	var fldBtnState = {
 		a1: "", a2: "", a3: "",
 		b1: "", b2: "", b3: "",
 		c1: "", c2: "", c3: "",
 	};
 
-
 	var resetBoard = function () {
+		//Make sure a timer doesn't fire after we reset!
+		clearInterval(flashingTimer);
+		clearTimeout(flashTimer1);
+		clearTimeout(flashTimer2);
+		// Reset the fldBtnState object.
 		for (var buttonId in fldBtnState) {
 			fldBtnState[buttonId] = "";
-			$("#"+buttonId).html("click me")
-			$("#"+buttonId).css("background-color","");
 		};
-		clearTimeout(flashTimerID);
-		plays = 0;
+		// Reset everything else.
+		$(".field").html("click me");
+		$(".field").css("background-color","");
+		catsLives = 0;
 		xPlayerState = true;
 		winner = false;
 		buttons = null;
 		$("#X").css("background-color","blue");
 		$("#O").css("background-color","");
+		$("button").css("opacity",1);
 	};
 
-	var processWinner = function (winningRow,color,cat){
+	var processWinner = function (winningRow){
 		winner = true; //strangle click handler;
+		$("#X, #O").css("background-color","");
 		buttons = $(winningRow);
-		buttons.css("background-color","");
-		if (cat = undefined){
-			xButtons = $()
-		}
-		setTimeout(function(){buttons.css("background-color",color)},400);
-
-		flashTimerID = setInterval(function(){
-			buttons.css("background-color","");
-			setTimeout(function(){
-				buttons.css("background-color",color)
+		buttons.css("opacity",1);
+		flashTimer1 = setTimeout(function(){buttons.css("opacity",0.6)},400);
+		flashingTimer = setInterval(function(){
+			buttons.css("opacity",1);
+			flashTimer2 = setTimeout(function(){
+				buttons.css("opacity",0.6)
 			}, 400);
 		}, 800);
 	};
 
+	// First of the two event handlers.
 	$("#reset").on( "click", function () {resetBoard()} );
 
-
+	// Second of the two event handlers.
 	$("button.field").on("click", function () {
 
 		if(winner) return; //kill click event until reset.
@@ -85,66 +91,66 @@ $(function(){
 			$("#O").css("background-color","");
 			};
 
-		plays ++;           // cat's counter.
+		catsLives ++;           // inc the cat!.
 
 		// check for winner... brute force, no finesse...
 		// check each row;
 		if((fldBtnState.a1 === 'X') && (fldBtnState.a2 === 'X') && (fldBtnState.a3 === 'X')){
-			processWinner (".r1","blue"); return;
+			processWinner (".r1"); return;
 		};
 		if((fldBtnState.b1 === 'X') && (fldBtnState.b2 === 'X') && (fldBtnState.b3 === 'X')){
-			processWinner (".r2","blue"); return;
+			processWinner (".r2"); return;
 		};
 		if((fldBtnState.c1 === 'X') && (fldBtnState.c2 === 'X') && (fldBtnState.c3 === 'X')){
-			processWinner (".r3","blue"); return;
+			processWinner (".r3"); return;
 		};
 		// check each column;
 		if((fldBtnState.a1 === 'X') && (fldBtnState.b1 === 'X') && (fldBtnState.c1 === 'X')){
-			processWinner (".c1","blue"); return;
+			processWinner (".c1"); return;
 		};
 		if((fldBtnState.a2 === 'X') && (fldBtnState.b2 === 'X') && (fldBtnState.c2 === 'X')){
-			processWinner (".c2","blue"); return;
+			processWinner (".c2"); return;
 		};
 		if((fldBtnState.a3 === 'X') && (fldBtnState.b3 === 'X') && (fldBtnState.c3 === 'X')){
-			processWinner (".c3","blue"); return;
+			processWinner (".c3"); return;
 			// check each diagonal;
 		};
 		if((fldBtnState.a1 === 'X') && (fldBtnState.b2 === 'X') && (fldBtnState.c3 === 'X')){
-			processWinner (".d1","blue"); return;
+			processWinner (".d1"); return;
 		};
 		if((fldBtnState.c1 === 'X') && (fldBtnState.b2 === 'X') && (fldBtnState.a3 === 'X')){
-			processWinner (".d2","blue"); return;
+			processWinner (".d2"); return;
 		};
 
 		// check each row;
 		if((fldBtnState.a1 === 'O') && (fldBtnState.a2 === 'O') && (fldBtnState.a3 === 'O')){
-			processWinner (".r1","firebrick"); return;
+			processWinner (".r1"); return;
 		};
 		if((fldBtnState.b1 === 'O') && (fldBtnState.b2 === 'O') && (fldBtnState.b3 === 'O')){
-			processWinner (".r2","firebrick"); return;
+			processWinner (".r2"); return;
 		};
 		if((fldBtnState.c1 === 'O') && (fldBtnState.c2 === 'O') && (fldBtnState.c3 === 'O')){
-			processWinner (".r3","firebrick"); return;
+			processWinner (".r3"); return;
 		};
 		// check each column;
 		if((fldBtnState.a1 === 'O') && (fldBtnState.b1 === 'O') && (fldBtnState.c1 === 'O')){
-			processWinner (".c1","firebrick"); return;
+			processWinner (".c1"); return;
 		};
 		if((fldBtnState.a2 === 'O') && (fldBtnState.b2 === 'O') && (fldBtnState.c2 === 'O')){
-			processWinner (".c2","firebrick"); return;
+			processWinner (".c2"); return;
 			};
 		if((fldBtnState.a3 === 'O') && (fldBtnState.b3 === 'O') && (fldBtnState.c3 === 'O')){
-			processWinner (".c3","firebrick"); return;
+			processWinner (".c3"); return;
 		};
 		// check each diagonal;
 		if((fldBtnState.a1 === 'O') && (fldBtnState.b2 === 'O') && (fldBtnState.c3 === 'O')){
-			processWinner (".d1","firebrick"); return;
+			processWinner (".d1"); return;
 		};
 		if((fldBtnState.c1 === 'O') && (fldBtnState.b2 === 'O') && (fldBtnState.a3 === 'O')){
-			processWinner (".d2","firebrick"); return;
+			processWinner (".d2"); return;
 		};
-		if (plays === 9) {
-			processWinner (".field","firebrick","blue"); return;
+		if (catsLives === 9) {
+			processWinner (".field"); return;
 		};
 	});
 });
