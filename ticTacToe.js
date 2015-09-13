@@ -7,6 +7,7 @@ $(function(){
 	var xPlayerState = true;
 	var winner = false;
 	var catsLives = 0;
+	var catsGame = false;
 	var buttons = null;
 	var upFlashingTimer = null; // Use: to make sure we get a clean reset!
 	var downFlashingTimer = null; // Use: to make sure we get a clean reset!
@@ -41,6 +42,7 @@ $(function(){
 		catsLives = 0;
 		xPlayerState = true;
 		winner = false;
+		catsGame = false;
 		buttons = null;
 		$("#X").css("background-color","blue");
 		$("#O").css("background-color","");
@@ -57,7 +59,7 @@ $(function(){
 		winner = true; //strangle click handler;
 		 // un-strangle the cat and the people then play audio.
 		// $("audio").prop("volume",1);
-		if (catsLives === 9){meow.play()}else{applause.play()};
+		if (catsGame){meow.play()}else{applause.play()};
 		//get a handle on the winning buttons.
 		$("#X, #O").css("background-color","");
 		buttons = $(winningRow);
@@ -169,7 +171,7 @@ $(function(){
 			processWinner (".d2"); return;
 		};
 		if (catsLives === 9) {
-			processWinner(".field"); return;
+			catsGame = true; processWinner(".field"); return;
 		};
 	});
 });
