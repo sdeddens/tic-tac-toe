@@ -1,20 +1,25 @@
 button {
-	height: 100px;
-	width: 100px;
+	height: 200px;
+	width: 200px;
 	margin: 5px;
 	border-width: 5px;
-  transition:all .4s ease;
+  transition: all .4s ease;
 }
+
+.endToEnd {overflow-x: scroll;}
+.field { display: inline-block;}
+
+h3 {padding-left: 40px;}
 
 #a1 {border-color: white black black white;}
 #a2 {border-color: white black black;}
 #a3 {border-color: white white black black;}
-#X {border-color: white white white black;}
+#X  {border-color: white white white black;}
 
 #b1 {border-color: black black black white;}
 #b2 {border-color: black;}
 #b3 {border-color: black white black black;}
-#O {border-color: white white white black;}
+#O  {border-color: white white white black;}
 
 #c1 {border-color: black black white white;}
 #c2 {border-color: black black white black;}
