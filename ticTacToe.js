@@ -52,17 +52,16 @@ $(function(){
 		// Reset everything else.
 		$(".field").html("click me");
 		$(".field").css("background-color","");
-		catsLives = 0;
-		xPlayerState = true;
-		winner = false;
-		catsGame = false;
-		buttons = null;
+		catsLives 		= 0;
+		xPlayerState 	= true;
+		winner 				= false;
+		catsGame 			= false;
+		buttons 			= null;
 		$("#X").css("background-color","blue");
 		$("#O").css("background-color","");
 		$("button").css("opacity",1);
 
 		//strangle the cat and the people.
-		// $("audio").prop("volume",0);
 		meow.pause();
 		meow.currentTime = 0;
 		applause.pause();
@@ -71,69 +70,76 @@ $(function(){
 	};
 
 	var processWinner = function (winningRow){
-		winner = true; //strangle click handler;
-		 // un-strangle the cat and the people then play audio.
-		// $("audio").prop("volume",1);
-		if (catsGame){meow.play()}else{applause.play()};
+		//disable the click handler;
+		winner = true;
+
+		// play either the cat or the applause audio.
+		if (catsGame){meow.play()} else {applause.play()};
+
+		// turn off the player indicator buttons background color.
+		$("#X, #O").css("background-color", "");
+
 		//get a handle on the winning buttons.
-		$("#X, #O").css("background-color","");
 		buttons = $(winningRow);
-		 // start the first flash down cycle asap.
-		buttons.css("opacity",0.6);
-		// start up cycle in 600ms
-		upTimer = setTimeout(function(){buttons.css("opacity",1.0)},600);
-		// downFlashingTimer starts in 1200 ms from asap and repeats every 1200 ms.
+
+		// start the first flash down cycle asap.
+		buttons.css("opacity", 0.6);
+
+		// start up cycle 600ms after asap.
+		upTimer = setTimeout(function(){buttons.css("opacity",1.0)}, 600);
+
+		// downFlashingTimer starts 1200ms after asap and repeats every 1200ms.
 		downFlashingTimer = setInterval(function(){
-				buttons.css("opacity",0.6);
+			buttons.css("opacity", 0.6);
 		}, 1200);
+
 		// delay upFlasher by 600ms putting it 180 deg out of phase with downFlasher
 		delayTimer = setTimeout(function(){
+
+			// upFlashingTimer starts 1800 ms after asap and repeats every 1200 ms.
 			upFlashingTimer = setInterval(function(){
-				buttons.css("opacity",1.0);
+				buttons.css("opacity", 1.0);
 			}, 1200);
-		},600);
+		}, 600);
 	};
 
-	// When the reset button is clicked on. First event handler.
-	$("#reset").on( "click", function () {resetBoard()} );
+	// When the reset button is clicked on. (First event handler.)
+	$("#reset").on( "click", function(){resetBoard()} );
 
-	// When a field button is clicked on.  Second event handler.
-	$("button.field").on("click", function () {
+	// When a field button is clicked on. (Second event handler.)
+	$("button.field").on("click", function(){
 
 		if(winner) return; //kill click event until reset.
 
 		var buttonId = $(this).attr('id');
 		var button = $("#"+buttonId);
 
-		if (fldBtnState[buttonId] !== ""){return};
+		if (fldBtnState[buttonId] !== "") return;
 		// square already played! Wait for another click.
 
-		if (xPlayerState) { // It is X's turn.
-
-			killWhoosh();
+		catsLives ++;       // increment the cat!
+		killWhoosh();				// make sure the new audio will play
+		if (xPlayerState) { // It's X's turn.
 			whoosh0.play();
 			fldBtnState[buttonId]="X";
 			button.html("X");
 			button.css("background-color","blue");
 			xPlayerState = false;
-			$("#X").css("background-color","");
-			$("#O").css("background-color","firebrick");
-
-			} else {					// It is O's turn.
-
-			killWhoosh();
+			$("#X").css("background-color", "");
+			$("#O").css("background-color", "firebrick");
+		}
+		else {							// It's O's turn.
 			whoosh1.play();
 			fldBtnState[buttonId]="O";
 			button.html("O");
 			button.css("background-color","firebrick");
 			xPlayerState = true;
-			$("#X").css("background-color","blue");
-			$("#O").css("background-color","");
-			};
+			$("#X").css("background-color", "blue");
+			$("#O").css("background-color", "");
+		};
 
-		catsLives ++;       // increment the cat!.
 
-		// check for winner, brute force, no finesse...
+		// check for "X" winner then check for "Y" winner, brute force, no finesse...
 		// check each row;
 		if((fldBtnState.a1 === 'X') && (fldBtnState.a2 === 'X') && (fldBtnState.a3 === 'X')){
 			processWinner (".r1"); return;
@@ -145,7 +151,7 @@ $(function(){
 			processWinner (".r3"); return;
 		};
 
-			// check each column;
+		// check each column;
 		if((fldBtnState.a1 === 'X') && (fldBtnState.b1 === 'X') && (fldBtnState.c1 === 'X')){
 			processWinner (".c1"); return;
 		};
@@ -155,7 +161,7 @@ $(function(){
 		if((fldBtnState.a3 === 'X') && (fldBtnState.b3 === 'X') && (fldBtnState.c3 === 'X')){
 			processWinner (".c3"); return;
 
-			// check each diagonal;
+		// check each diagonal;
 		};
 		if((fldBtnState.a1 === 'X') && (fldBtnState.b2 === 'X') && (fldBtnState.c3 === 'X')){
 			processWinner (".d1"); return;
@@ -194,9 +200,9 @@ $(function(){
 			processWinner (".d2"); return;
 		};
 
-// no winner and 9 plays? The cat wins.
+		// no winner and 9 plays? The cat wins.
 		if (catsLives === 9) {
-			catsGame = true; processWinner(".field"); return;
+			catsGame = true; processWinner(".field");
 		};
 	});
 });
