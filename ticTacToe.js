@@ -9,16 +9,16 @@ $(function(){
 	var catsLives 				= 0;
 	var catsGame 					= false;
 	var buttons 					= null;
-	var upFlashingTimer 	= null; // Use: to make sure we get a clean reset!
-	var downFlashingTimer = null; // Use: to make sure we get a clean reset!
-	var upTimer 					= null; // Use: to make sure we get a clean reset!
-	var delayTimer 				= null; // Use: to make sure we get a clean reset!
-	var whoosh0 					= $("audio")[0];
-	var whoosh1 					= $("audio")[1];
+	var upFlashingTimer 	= null;
+	var downFlashingTimer = null;
+	var upTimer 					= null;
+	var delayTimer 				= null;
+	var whooshO 					= $("audio")[0];
+	var whooshX 					= $("audio")[1];
 	var applause 					= $("audio")[2];
 	var meow 							= $("audio")[3];
-	$("#X").css("background-color","blue");
-	$("#O").css("background-color",""); // vs firebrick
+	$("#X").css("background-color", "blue");
+	$("#O").css("background-color", ""); // vs firebrick
 
 	// create an object to store the field state so we can check for a winner;
 	// note: there is a one-to-one correspondence to each field button id.
@@ -29,10 +29,10 @@ $(function(){
 	};
 
 	var killWhoosh = function () {
-			whoosh0.pause();
-			whoosh0.currentTime = 0;
-			whoosh1.pause();
-			whoosh1.currentTime = 0;
+			whooshO.pause();
+			whooshO.currentTime = 0;
+			whooshX.pause();
+			whooshX.currentTime = 0;
 	};
 
 
@@ -57,9 +57,9 @@ $(function(){
 		winner 				= false;
 		catsGame 			= false;
 		buttons 			= null;
-		$("#X").css("background-color","blue");
-		$("#O").css("background-color","");
-		$("button").css("opacity",1);
+		$("#X").css("background-color", "blue");
+		$("#O").css("background-color", "");
+		$("button").css("opacity", 1);
 
 		//strangle the cat and the people.
 		meow.pause();
@@ -70,16 +70,16 @@ $(function(){
 	};
 
 	var processWinner = function (winningRow){
-		//disable the click handler;
+		// disable the click handler;
 		winner = true;
 
 		// play either the cat or the applause audio.
-		if (catsGame){meow.play()} else {applause.play()};
+		if (catsGame) {meow.play()} else {applause.play()};
 
 		// turn off the player indicator buttons background color.
 		$("#X, #O").css("background-color", "");
 
-		//get a handle on the winning buttons.
+		// get a handle on the winning buttons.
 		buttons = $(winningRow);
 
 		// start the first flash down cycle asap.
@@ -103,36 +103,38 @@ $(function(){
 		}, 600);
 	};
 
-	// When the reset button is clicked on. (First event handler.)
+	// When the reset button is clicked on...
+	// First event handler.
 	$("#reset").on( "click", function(){resetBoard()} );
 
-	// When a field button is clicked on. (Second event handler.)
+	// When a field button is clicked on...
+	// Second event handler.
 	$("button.field").on("click", function(){
 
-		if(winner) return; //kill click event until reset.
+		if(winner) return; //Kill all field click events until reset (New Game) is Selected.
 
 		var buttonId = $(this).attr('id');
 		var button = $("#"+buttonId);
 
 		if (fldBtnState[buttonId] !== "") return;
-		// square already played! Wait for another click.
+		// Square already played! Wait for another click.
 
 		catsLives ++;       // increment the cat!
 		killWhoosh();				// make sure the new audio will play
 		if (xPlayerState) { // It's X's turn.
-			whoosh0.play();
+			whooshX.play();
 			fldBtnState[buttonId]="X";
 			button.html("X");
-			button.css("background-color","blue");
+			button.css("background-color", "blue");
 			xPlayerState = false;
 			$("#X").css("background-color", "");
 			$("#O").css("background-color", "firebrick");
 		}
 		else {							// It's O's turn.
-			whoosh1.play();
+			whooshO.play();
 			fldBtnState[buttonId]="O";
 			button.html("O");
-			button.css("background-color","firebrick");
+			button.css("background-color", "firebrick");
 			xPlayerState = true;
 			$("#X").css("background-color", "blue");
 			$("#O").css("background-color", "");

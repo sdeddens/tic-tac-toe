@@ -1,5 +1,5 @@
 TIC-TAC-TOE General Assembly Week-3 student project
-Overview: Interactive user game designed to be played in a web browser. 
+Overview: Interactive user game designed to be played in a web browser.
 
 Student: Stephen Deddens
 Version-1 uploaded 09/11/2015
@@ -29,7 +29,7 @@ Explanations of the technologies used:
 	https://en.wikipedia.org/wiki/Cascading_Style_Sheets
 	https://developer.mozilla.org/en-US/docs/Web/CSS
 
-	JavaScript: 
+	JavaScript:
 	https://en.wikipedia.org/wiki/JavaScript
 	https://developer.mozilla.org/en-US/docs/Web/JavaScript
 	https://www.javascript.com/resources
@@ -39,7 +39,7 @@ Explanations of the technologies used:
 	https://jquery.com/
 
 	Gliffy: Wireframing tool
-	https://www.gliffy.com/ 
+	https://www.gliffy.com/
 
 	Agile Project Tracking Software:
 	https://en.wikipedia.org/wiki/Agile_software_development
@@ -66,12 +66,12 @@ Approach taken to implement the project goals:
 
 	Third step: Create minimal display using HTML and CSS. Attach to the HTML elements unique id selectors making them accessible to the JavaScript.
 
-	Fourth step: "Pseudocode" the JavaScript. 
+	Fourth step: "Pseudocode" the JavaScript.
 
 		Create tracking variables
 			whosTurn boolean;
 			totalPlaysCounter;
-			trackingObject to track the board's state; 
+			trackingObject to track the board's state;
 
 		Create Reset Function
 			reset whosTurn and totalPlaysCounter
@@ -87,9 +87,9 @@ Approach taken to implement the project goals:
 				First possible event: Click on the game grid;
 					Use jQuery to extract the clicked button's id selector
 					Check board's state in tracking object to see if grid square has already been played
-						if played.. 
+						if played..
 							return out of the event and wait for new click event
-						else 
+						else
 							update tracking object and the HTML with X or O (depending on player state)
 							update totalPlaysCounter and whosTurn variables
 
@@ -109,7 +109,7 @@ Approach taken to implement the project goals:
 
 Installation Instructions: Point browser at ---
 
-http://powerbids.com/Steve/Projects/Tic-Tac-Toe
+http://sdeddens.com/projects/tic-tac-toe
 
 
 Unsolved problems:  None.  MVP achieved.
