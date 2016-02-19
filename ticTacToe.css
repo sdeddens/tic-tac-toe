@@ -18,7 +18,8 @@ button {
 	margin-left: auto;
 }
 
-h3 {padding-left: 40px;}
+h3 {margin-bottom: 0px;}
+#soundPara {margin-top: 0px;}
 
 #a1 {border-color: white black black white;}
 #a2 {border-color: white black black;}
@@ -34,3 +35,8 @@ h3 {padding-left: 40px;}
 #c2 {border-color: black black white black;}
 #c3 {border-color: black white white black;}
 #reset {border-color: white white white black;}
+
+#gitLogo {
+	position: relative;
+	top: 7px;
+}
