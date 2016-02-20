@@ -1,42 +1,28 @@
 button {
-	height: 100px;
-	width:  100px;
-	margin: 3px;
-	border-width: 3px;
+  height: 100px;
+  width:  100px;
+  margin: 3px;
+  border-width: 3px;
+  border-color: black;
   transition: all .4s ease;
 }
 
 #X, #O, #reset {
-	height: 80px;
-	width:  80px;
-	margin-left: 20px;
+  height: 80px;
+  width:  80px;
+  margin-left: 20px;
 }
 
 #wrapper {
-	width: 500px;
-	margin-right: auto;
-	margin-left: auto;
+  width: 500px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 h3 {margin-bottom: 0px;}
 #soundPara {margin-top: 0px;}
 
-#a1 {border-color: white black black white;}
-#a2 {border-color: white black black;}
-#a3 {border-color: white white black black;}
-#X  {border-color: white white white black;}
-
-#b1 {border-color: black black black white;}
-#b2 {border-color: black;}
-#b3 {border-color: black white black black;}
-#O  {border-color: white white white black;}
-
-#c1 {border-color: black black white white;}
-#c2 {border-color: black black white black;}
-#c3 {border-color: black white white black;}
-#reset {border-color: white white white black;}
-
 #gitLogo {
-	position: relative;
-	top: 7px;
+  position: relative;
+  top: 7px;
 }
