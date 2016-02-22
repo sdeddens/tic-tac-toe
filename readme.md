@@ -19,48 +19,51 @@ https://github.com/ga-students/wdi-atx-2-class/tree/master/w03 (private)
 **Explanations of the technologies used:**
 
  - Sublime Text: Text editor for code, markup and prose.
-	https://www.sublimetext.com/
+  https://www.sublimetext.com/
 
  - Web browser:
-	https://en.wikipedia.org/wiki/Web_browser
+  https://en.wikipedia.org/wiki/Web_browser
 
  - HTML: HyperText Markup Language
-	https://en.wikipedia.org/wiki/HTML
-	https://developer.mozilla.org/en-US/docs/Web/HTML
+  https://en.wikipedia.org/wiki/HTML
+  https://developer.mozilla.org/en-US/docs/Web/HTML
 
  - CSS: Cascading Style Sheets
-	https://en.wikipedia.org/wiki/Cascading_Style_Sheets
-	https://developer.mozilla.org/en-US/docs/Web/CSS
+  https://en.wikipedia.org/wiki/Cascading_Style_Sheets
+  https://developer.mozilla.org/en-US/docs/Web/CSS
 
  - JavaScript:
-	https://en.wikipedia.org/wiki/JavaScript
-	https://developer.mozilla.org/en-US/docs/Web/JavaScript
-	https://www.javascript.com/resources
+  https://en.wikipedia.org/wiki/JavaScript
+  https://developer.mozilla.org/en-US/docs/Web/JavaScript
+  https://www.javascript.com/resources
 
  - jQuery:
-	https://en.wikipedia.org/wiki/JQuery
-	https://jquery.com/
+  https://en.wikipedia.org/wiki/JQuery
+  https://jquery.com/
 
  - CDN: Content Delivery Network
-	https://en.wikipedia.org/wiki/Content_delivery_network
+  https://en.wikipedia.org/wiki/Content_delivery_network
 
- - 	Gliffy: Wireframing tool
-	https://www.gliffy.com/
+ - Gliffy: Wireframing tool
+  https://www.gliffy.com/
 
  - Agile Project Tracking Software:
-	https://en.wikipedia.org/wiki/Agile_software_development
-	https://www.pivotaltracker.com/
+  https://en.wikipedia.org/wiki/Agile_software_development
+  https://www.pivotaltracker.com/
 
- - 	Git: Distributed version control system
-	https://en.wikipedia.org/wiki/Git_%28software%29
-	https://git-scm.com/
+ - Git: Distributed version control system
+  https://en.wikipedia.org/wiki/Git_%28software%29
+  https://git-scm.com/
 
- - 	Git Hub: Web-based Git repository hosting service
-	https://en.wikipedia.org/wiki/GitHub
-	https://github.com/
+ - Git Hub: Web-based Git repository hosting service
+  https://en.wikipedia.org/wiki/GitHub
+  https://github.com/
 
- - 	FileZilla: FTP client for pushing project files to web server
-	https://filezilla-project.org/
+ - Static Website Using a Custom Domain (URL):
+  https://en.wikipedia.org/wiki/Static_web_page
+
+ -  FileZilla: FTP client for pushing project files to web server
+  https://filezilla-project.org/
 
 **Approach taken to implement the project goals:**
 
