@@ -28,14 +28,6 @@ $(function(){
     c1: "", c2: "", c3: "",
   };
 
-  var killWhoosh = function () {
-      whooshO.pause();
-      whooshO.currentTime = 0;
-      whooshX.pause();
-      whooshX.currentTime = 0;
-  };
-
-
   var resetBoard = function () {
 
     //Make sure a timer doesn't fire after we reset!
@@ -61,12 +53,15 @@ $(function(){
     $("#O").css("background-color", "");
     $("button").css("opacity", 1);
 
-    //strangle the cat and the people.
+    //strangle the whoosh, the cat, and the people.
     meow.pause();
     meow.currentTime = 0;
     applause.pause();
     applause.currentTime = 0;
-    killWhoosh();
+    whooshO.pause();
+    whooshO.currentTime = 0;
+    whooshX.pause();
+    whooshX.currentTime = 0;
   };
 
   var processWinner = function (winningRow){
@@ -120,8 +115,10 @@ $(function(){
     // Square already played! Wait for another click.
 
     catsLives ++;       // increment the cat!
-    killWhoosh();       // make sure the new audio will play
     if (xPlayerState) { // It's X's turn.
+      // Reset the whoosh making sure it isn't still playing.
+      whooshX.pause();
+      whooshX.currentTime = 0;
       whooshX.play();
       fldBtnState[buttonId]="X";
       button.html("X");
@@ -131,6 +128,9 @@ $(function(){
       $("#O").css("background-color", "firebrick");
     }
     else {              // It's O's turn.
+      // Reset the whoosh making sure it isn't still playing.
+      whooshO.pause();
+      whooshO.currentTime = 0;
       whooshO.play();
       fldBtnState[buttonId]="O";
       button.html("O");
