@@ -1,6 +1,3 @@
-
-
-
 TIC-TAC-TOE General Assembly Week-3 student project
 Overview: Interactive user game designed to be played in a web browser.
 
@@ -12,7 +9,7 @@ https://github.com/ga-students/wdi-atx-2-class/tree/master/w03 (private)
 
 **Big Goals**
 
- -   Build a web application from scratch, without a starter codebase
+ - Build a web application from scratch, without a starter codebase
  - Use your programming skills to map out the game logic for a simple game like Tic Tac Toe
  - Separate HTML, CSS, and JavaScript files in your application
  - Build an application to a spec that someone else gives you
@@ -20,6 +17,9 @@ https://github.com/ga-students/wdi-atx-2-class/tree/master/w03 (private)
  - Craft a readme.md file that explains your app to the world
 
 **Explanations of the technologies used:**
+
+ - Sublime Text: Text editor for code, markup and prose.
+	https://www.sublimetext.com/
 
  - Web browser:
 	https://en.wikipedia.org/wiki/Web_browser
@@ -41,6 +41,9 @@ https://github.com/ga-students/wdi-atx-2-class/tree/master/w03 (private)
 	https://en.wikipedia.org/wiki/JQuery
 	https://jquery.com/
 
+ - CDN: Content Delivery Network
+	https://en.wikipedia.org/wiki/Content_delivery_network
+
  - 	Gliffy: Wireframing tool
 	https://www.gliffy.com/
 
@@ -59,42 +62,30 @@ https://github.com/ga-students/wdi-atx-2-class/tree/master/w03 (private)
  - 	FileZilla: FTP client for pushing project files to web server
 	https://filezilla-project.org/
 
- -
-	FileZilla: FTP client for pushing project files to web server
-	https://filezilla-project.org/
-
 **Approach taken to implement the project goals:**
 
  Considering the time constraint of less than four days to create, focus was first and foremost on MVP (Minimal Viable Product.) Therefore, no player selection or tracking. The first play is always "X".
 
-
-
- - Determine the driving technology.  In this case it is obviously JavaScript.  Game board display is a simple 3x3 grid. And, intricate display styling was not a requirement of the project.  The challenge is the game logic. Therefore, JavaScript is the driving technology.
+ - Determine the driving technology.  The challenge is the game logic.  Therefore, JavaScript is obviously the driving technology.  Intricate display styling was not a requirement of the project.  Game board display, being a simple 3x3 grid, is not considered a driving technology.
  - Study the game logic to determine a what variables were required to track current user, grid cell selection, game progress, and determine a winner.
  - Create minimal display using HTML and CSS. Attach to the HTML elements unique id selectors making them accessible to the JavaScript.
- - "Pseudocode" the JavaScript.
+ - "Pseudocode" the JavaScript.  (See pseudocode.txt)
  - Write the javaScrip code, testing iteratively;
  - Write this README.md and push up to Git Hub.
  - Push up to host server.
 
-**Installation Instructions:** Point browser at ---
+**Installation Instructions:**
+
+ - Point browser at ---
 http://sdeddens.com/projects/tic-tac-toe
 
-**Unsolved problems:**  None.  MVP achieved.
+**Unsolved problems:**
+
+ - None.  MVP achieved.
 
 **Continuing development opportunities:**
 
  - Add interactive user names allowing score keeping.
  - Use CSS to style background and button design... etc.
-
-
-
-
-
-
-
-
-
-
 
 Written with [StackEdit](https://stackedit.io/).
