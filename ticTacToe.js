@@ -2,7 +2,7 @@
 $(function(){
 
 // Slap a universal jQuery event handler on the buttons
-// Then drive the whole program from the two on click events!
+// Then drive the whole program from two on-click events!
 
   var xPlayerState      = true;
   var winner            = false;
@@ -30,7 +30,7 @@ $(function(){
 
   var resetBoard = function () {
 
-    //Make sure a timer doesn't fire after we reset!
+    // Make sure a timer doesn't fire after we reset!
     clearTimeout(delayTimer); //kill first to preempt spawning another upFlasher.
     clearTimeout(upTimer);
     clearInterval(upFlashingTimer);
@@ -53,7 +53,7 @@ $(function(){
     $("#O").css("background-color", "");
     $("button").css("opacity", 1);
 
-    //strangle the cat, the people, and the whoosh.
+    // strangle the cat, the people, and the whoosh.
     meow.pause();
     meow.currentTime = 0;
     applause.pause();
