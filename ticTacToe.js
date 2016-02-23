@@ -69,7 +69,7 @@ $(function(){
     winner = true;
 
     // play either the cat or the applause audio.
-    if (catsGame) {meow.play()} else {applause.play()};
+    catsGame ? meow.play() : applause.play();
 
     // turn off the player indicator buttons background color.
     $("#X, #O").css("background-color", "");
