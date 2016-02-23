@@ -98,6 +98,44 @@ $(function(){
     }, 600);
   };
 
+  // check to see if player won, brute force, no finesse...
+  var checkWinner = function () {
+    var player = xPlayerState ? "X" : "O";
+
+    // check each row;
+    if((fldBtnState.a1 === player) && (fldBtnState.a2 === player) && (fldBtnState.a3 === player)){
+      processWinner (".r1"); return true;
+    };
+    if((fldBtnState.b1 === player) && (fldBtnState.b2 === player) && (fldBtnState.b3 === player)){
+      processWinner (".r2"); return true;
+    };
+    if((fldBtnState.c1 === player) && (fldBtnState.c2 === player) && (fldBtnState.c3 === player)){
+      processWinner (".r3"); return true;
+    };
+
+    // check each column;
+    if((fldBtnState.a1 === player) && (fldBtnState.b1 === player) && (fldBtnState.c1 === player)){
+      processWinner (".c1"); return true;
+    };
+    if((fldBtnState.a2 === player) && (fldBtnState.b2 === player) && (fldBtnState.c2 === player)){
+      processWinner (".c2"); return true;
+    };
+    if((fldBtnState.a3 === player) && (fldBtnState.b3 === player) && (fldBtnState.c3 === player)){
+      processWinner (".c3"); return true;
+    };
+
+    // check each diagonal;
+    if((fldBtnState.a1 === player) && (fldBtnState.b2 === player) && (fldBtnState.c3 === player)){
+      processWinner (".d1"); return true;
+    };
+    if((fldBtnState.c1 === player) && (fldBtnState.b2 === player) && (fldBtnState.a3 === player)){
+      processWinner (".d2"); return true;
+    };
+
+    // no winner yet.
+    return false;
+  }
+
   // First event handler.
   // When the reset button is clicked on...
   $("#reset").on("click", function(){resetBoard()});
@@ -116,92 +154,32 @@ $(function(){
     if (fldBtnState[buttonId] !== "") return;
 
     catsLives ++;       // Increment the cat!
-    if (xPlayerState) { // It's X's turn.
-      // Reset the whoosh making sure it isn't still playing.
+    if (xPlayerState) { // it was X's turn.
+      // reset the whoosh making sure it isn't still playing then play it.
       whooshX.pause();
       whooshX.currentTime = 0;
       whooshX.play();
       fldBtnState[buttonId]="X";
       button.html("X");
       button.css("background-color", "blue");
-      xPlayerState = false;
       $("#X").css("background-color", "");
       $("#O").css("background-color", "firebrick");
+      if (checkWinner())return;
+      xPlayerState = false;
     }
-    else {              // It's O's turn.
-      // Reset the whoosh making sure it isn't still playing.
+    else {              // it was O's turn.
+      // reset the whoosh making sure it isn't still playing then play it.
       whooshO.pause();
       whooshO.currentTime = 0;
       whooshO.play();
       fldBtnState[buttonId]="O";
       button.html("O");
       button.css("background-color", "firebrick");
-      xPlayerState = true;
       $("#X").css("background-color", "blue");
       $("#O").css("background-color", "");
+      if (checkWinner())return;
+      xPlayerState = true;
     };
-
-    // check for "X" winner then check for "Y" winner, brute force, no finesse...
-    // check each row;
-    if((fldBtnState.a1 === 'X') && (fldBtnState.a2 === 'X') && (fldBtnState.a3 === 'X')){
-      processWinner (".r1"); return;
-    };
-    if((fldBtnState.b1 === 'X') && (fldBtnState.b2 === 'X') && (fldBtnState.b3 === 'X')){
-      processWinner (".r2"); return;
-    };
-    if((fldBtnState.c1 === 'X') && (fldBtnState.c2 === 'X') && (fldBtnState.c3 === 'X')){
-      processWinner (".r3"); return;
-    };
-
-    // check each column;
-    if((fldBtnState.a1 === 'X') && (fldBtnState.b1 === 'X') && (fldBtnState.c1 === 'X')){
-      processWinner (".c1"); return;
-    };
-    if((fldBtnState.a2 === 'X') && (fldBtnState.b2 === 'X') && (fldBtnState.c2 === 'X')){
-      processWinner (".c2"); return;
-    };
-    if((fldBtnState.a3 === 'X') && (fldBtnState.b3 === 'X') && (fldBtnState.c3 === 'X')){
-      processWinner (".c3"); return;
-
-    // check each diagonal;
-    };
-    if((fldBtnState.a1 === 'X') && (fldBtnState.b2 === 'X') && (fldBtnState.c3 === 'X')){
-      processWinner (".d1"); return;
-    };
-    if((fldBtnState.c1 === 'X') && (fldBtnState.b2 === 'X') && (fldBtnState.a3 === 'X')){
-      processWinner (".d2"); return;
-    };
-
-    // check each row;
-    if((fldBtnState.a1 === 'O') && (fldBtnState.a2 === 'O') && (fldBtnState.a3 === 'O')){
-      processWinner (".r1"); return;
-    };
-    if((fldBtnState.b1 === 'O') && (fldBtnState.b2 === 'O') && (fldBtnState.b3 === 'O')){
-      processWinner (".r2"); return;
-    };
-    if((fldBtnState.c1 === 'O') && (fldBtnState.c2 === 'O') && (fldBtnState.c3 === 'O')){
-      processWinner (".r3"); return;
-    };
-
-    // check each column;
-    if((fldBtnState.a1 === 'O') && (fldBtnState.b1 === 'O') && (fldBtnState.c1 === 'O')){
-      processWinner (".c1"); return;
-    };
-    if((fldBtnState.a2 === 'O') && (fldBtnState.b2 === 'O') && (fldBtnState.c2 === 'O')){
-      processWinner (".c2"); return;
-      };
-    if((fldBtnState.a3 === 'O') && (fldBtnState.b3 === 'O') && (fldBtnState.c3 === 'O')){
-      processWinner (".c3"); return;
-    };
-
-    // check each diagonal;
-    if((fldBtnState.a1 === 'O') && (fldBtnState.b2 === 'O') && (fldBtnState.c3 === 'O')){
-      processWinner (".d1"); return;
-    };
-    if((fldBtnState.c1 === 'O') && (fldBtnState.b2 === 'O') && (fldBtnState.a3 === 'O')){
-      processWinner (".d2"); return;
-    };
-
     // no winner and 9 plays? The cat wins.
     if (catsLives === 9) {
       catsGame = true; processWinner(".field");
