@@ -53,7 +53,7 @@ $(function(){
     $("#O").css("background-color", "");
     $("button").css("opacity", 1);
 
-    //strangle the whoosh, the cat, and the people.
+    //strangle the cat, the people, and the whoosh.
     meow.pause();
     meow.currentTime = 0;
     applause.pause();
@@ -98,23 +98,24 @@ $(function(){
     }, 600);
   };
 
-  // When the reset button is clicked on...
   // First event handler.
-  $("#reset").on( "click", function(){resetBoard()} );
+  // When the reset button is clicked on...
+  $("#reset").on("click", function(){resetBoard()});
 
-  // When a field button is clicked on...
   // Second event handler.
+  // When a field button is clicked on...
   $("button.field").on("click", function(){
 
-    if(winner) return; //Kill all field click events until reset (New Game) is Selected.
+    // Kill all field click events until reset (New Game) is Selected.
+    if(winner) return;
 
     var buttonId = $(this).attr('id');
     var button = $("#"+buttonId);
 
+    // If square already played! Wait for another click.
     if (fldBtnState[buttonId] !== "") return;
-    // Square already played! Wait for another click.
 
-    catsLives ++;       // increment the cat!
+    catsLives ++;       // Increment the cat!
     if (xPlayerState) { // It's X's turn.
       // Reset the whoosh making sure it isn't still playing.
       whooshX.pause();
@@ -139,7 +140,6 @@ $(function(){
       $("#X").css("background-color", "blue");
       $("#O").css("background-color", "");
     };
-
 
     // check for "X" winner then check for "Y" winner, brute force, no finesse...
     // check each row;
